@@ -2,16 +2,16 @@
   <div class="home" v-loading="loading">
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <h3>测试网水龙头</h3>
+        <h3> {{$t('title')}}</h3>
         <!-- <el-button style="float: right; padding: 3px 0" type="text">帮助</el-button> -->
       </div>
-      <div class="text item">当前水塔拥有 {{ balance }} SDG</div>
+      <div class="text item"> {{$t('sdag_desc')}} {{ balance }} SDG</div>
       <div class="text item">
-        <el-input placeholder="输入你的SDAG钱包地址" suffix-icon="el-icon-wallet" v-model="useraddress"></el-input>
+        <el-input  :placeholder="$t('placeholder_addr')" suffix-icon="el-icon-wallet" v-model="useraddress"></el-input>
       </div>
       <div class="text item"></div>
       <div class="text item">
-        <el-button type="primary" @click="getbalance">领取 100 SDG</el-button>
+        <el-button type="primary" @click="getbalance">{{$t('btn')}}  100 SDG</el-button>
       </div>
     </el-card>
   </div>
@@ -59,7 +59,7 @@ export default {
         .send({ amount: 100, to: this.useraddress, text: "用于测试的100枚SDG" })
         .then(() => {
           this.loading = false;
-          this.msg("提示", "领取成功");
+          this.msg(this.$t('msg_title'), this.$t('msg_c'));
           this.useraddress = "";
         })
         .catch(err => console.log(err));
